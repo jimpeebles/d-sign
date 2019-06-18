@@ -23,6 +23,9 @@ import vueDropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
 import IPFS from "ipfs";
 
+// Initialize IPFS node
+const node = new IPFS();
+
 export default {
   data: () => ({
     dropOptions: {
@@ -39,8 +42,6 @@ export default {
       this.file = file;
     },
     async upload() {
-      const node = new IPFS();
-
       // once the node is ready
       node.once("ready", () => {
         // convert your data to a Buffer and add it to IPFS
