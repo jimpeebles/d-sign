@@ -21,12 +21,15 @@
 <script>
 import vueDropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
+import IPFS from "ipfs";
+
 export default {
   data: () => ({
     dropOptions: {
       url: "https://httpbin.org/post"
     },
-    file: ""
+    file: "",
+    docHash: ""
   }),
   components: {
     vueDropzone
@@ -36,7 +39,16 @@ export default {
       this.file = file;
     },
     async upload() {
-      // TODO: Upload file to IPFS
+      const node = new IPFS();
+
+      // once the node is ready
+      node.once("ready", () => {
+        // convert your data to a Buffer and add it to IPFS
+        node.add(IPFS.Buffer.from(this.file), (err, files) => {
+          if (err) return console.error(err);
+          this.docHash = files[0].hash;
+        });
+      });
     }
   }
 };
