@@ -24,6 +24,7 @@ import "vue2-dropzone/dist/vue2Dropzone.min.css";
 import IPFS from "ipfs";
 
 // Initialize IPFS node
+// TODO: Pin using pinning service or set up node on VPS
 const node = new IPFS();
 
 export default {
