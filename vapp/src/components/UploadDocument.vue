@@ -21,11 +21,6 @@
 <script>
 import vueDropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
-import IPFS from "ipfs";
-
-// Initialize IPFS node
-// TODO: Pin using pinning service or set up node on VPS
-const node = new IPFS();
 
 export default {
   data: () => ({
@@ -43,14 +38,7 @@ export default {
       this.file = file;
     },
     async upload() {
-      // once the node is ready
-      node.once("ready", () => {
-        // convert your data to a Buffer and add it to IPFS
-        node.add(IPFS.Buffer.from(this.file), (err, files) => {
-          if (err) return console.error(err);
-          this.docHash = files[0].hash;
-        });
-      });
+      // TODO: Send file to IPFS daemon running on express server
     }
   }
 };
