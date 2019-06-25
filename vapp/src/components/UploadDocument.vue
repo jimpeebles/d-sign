@@ -41,7 +41,6 @@ export default {
       this.file = file;
     },
     async upload() {
-      // TODO: Send file to IPFS daemon running on express server
       const results = await ipfs.add(this.file);
       this.docHash = results[0].hash;
     }
