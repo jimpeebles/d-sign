@@ -1,5 +1,5 @@
 {
-  "name": "vapp",
+  "name": "ipfs-document-signer",
   "version": "0.0.1",
   "private": true,
   "scripts": {
