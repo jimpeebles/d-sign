@@ -1,6 +1,7 @@
 <template>
   <div v-if="isDrizzleInitialized" id="app">
     <UploadDocument />
+    <SlideOutMenu />
   </div>
 
   <div v-else>Loading...</div>
@@ -8,12 +9,14 @@
 
 <script>
 import UploadDocument from "./components/UploadDocument";
+import SlideOutMenu from "./components/SlideOutMenu";
 import { mapGetters } from "vuex";
 
 export default {
   name: "app",
   components: {
-    UploadDocument
+    UploadDocument,
+    SlideOutMenu
   },
 
   computed: mapGetters("drizzle", ["isDrizzleInitialized"])
