@@ -21,6 +21,9 @@
 <script>
 import vueDropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
+import IPFS from "ipfs-http-client";
+
+const ipfs = new IPFS({ host: "localhost", port: 5001 });
 
 export default {
   data: () => ({
@@ -39,6 +42,8 @@ export default {
     },
     async upload() {
       // TODO: Send file to IPFS daemon running on express server
+      const results = await ipfs.add(this.file);
+      this.docHash = results[0].hash;
     }
   }
 };
