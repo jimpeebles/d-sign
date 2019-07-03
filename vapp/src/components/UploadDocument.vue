@@ -43,6 +43,8 @@ export default {
     async upload() {
       const results = await ipfs.add(this.file);
       this.docHash = results[0].hash;
+
+      // TODO: Store document hash somewhere locally, so deployer can easily query signatures.
     }
   }
 };
